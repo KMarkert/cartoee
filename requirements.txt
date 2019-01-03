@@ -1,0 +1,7 @@
+# List required packages in this file, one per line.
+google-api-python-client
+earthengine-api
+Cython
+pyproj
+cartopy
+nbsphinx
