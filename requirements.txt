@@ -1,4 +1,5 @@
 # List required packages in this file, one per line.
 earthengine-api
+cython
 pyproj
 cartopy
