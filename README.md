@@ -12,8 +12,8 @@ pip install cartoee
 Or, you can install the package manually from source code using the following commands:
 
 ```
-git clone https://github.com/kmarkert/carto-ee.git
-cd carto-ee
+git clone https://github.com/kmarkert/cartoee.git
+cd cartoee
 pip install -e .
 ```
 
