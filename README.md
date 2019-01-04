@@ -35,7 +35,7 @@ ee.Initialize()
 srtm = ee.Image("CGIAR/SRTM90_V4")
 
 # plot the result using cartoee
-ax = cee.plot(srtm,region=[-180,-90,180,90],visParams={'min':0,'max':3000})
+ax = cee.getMap(srtm,region=[-180,-90,180,90],visParams={'min':0,'max':3000})
 
 ax.coastlines()
 plt.show()
@@ -110,11 +110,11 @@ titles = np.array([['DJF','MAM'],['JJA','SON']])
 
 for i in range(len(imgs)):
   for j in range(len(imgs[i])):
-      ax[i,j] = cee.plot(imgs[i,j],region=[-180,-90,180,90],
+      ax[i,j] = cee.addLayer(imgs[i,j],region=[-180,-90,180,90],
                          visParams={'min':-0.5 ,'max':0.85,'bands':'ndvi','palette':cb},
                          dims=500,axes=ax[i,j])
       ax[i,j].coastlines()
       ax[i,j].gridlines(linestyle='--')
       ax[i,j].set_title(titles[i,j])
 ```
-![alt-text](./docs/_static/seasonal_ndvi1.png)
+![alt-text](./docs/_static/seasonal_ndvi.png)
