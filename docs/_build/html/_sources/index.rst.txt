@@ -24,3 +24,11 @@ This packages aims to do only one thing well: getting processing results from Ea
 
    examples/cartoee_simple.ipynb
    examples/cartoee_projections.ipynb
+   examples/cartoee_multimaps.ipynb
+
+
+.. toctree::
+  :maxdepth: 2
+  :caption: API Reference:
+
+  ToDo

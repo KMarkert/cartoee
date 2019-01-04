@@ -20,7 +20,7 @@ A typical Earth Engine workflow includes:
 Here, we omit the 2nd step and merge steps 1 and 3 into one step. This allows users to process their data using the Python Earth Engine API and quickly create a map.
 
 Installation
-==================
+-------------
 
 :code:`cartoee` is available to install via :code:`pip`. To install the package, you can use pip  install for your Python environment:
 
@@ -37,7 +37,7 @@ Or, you can install the package manually from source code using the following co
   pip install -e .
 
 Dependencies
-~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 :code:`cartoee` is built using pure Python code however relies on a few dependencies (`earthengine-api <https://developers.google.com/earth-engine/>`_ and cartopy_) that are available. Users are referred to the dependencies documentation for installation instructions:
 

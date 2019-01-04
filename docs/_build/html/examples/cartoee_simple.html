@@ -88,7 +88,6 @@
               <p class="caption"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../introduction.html#installation">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Examples:</span></p>
 <ul class="current">
@@ -99,6 +98,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cartoee_projections.html">Working with projections in cartoee</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cartoee_multimaps.html">Multiple maps using subplots</a></li>
 </ul>
 
             
@@ -446,7 +446,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># plot the result using cartoee</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -470,7 +470,7 @@ Populating the interactive namespace from numpy and matplotlib
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">cartopy.mpl.gridliner</span> <span class="k">import</span> <span class="n">LATITUDE_FORMATTER</span><span class="p">,</span> <span class="n">LONGITUDE_FORMATTER</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 
 <span class="c1"># set gridlines and spacing</span>
@@ -509,27 +509,31 @@ Populating the interactive namespace from numpy and matplotlib
 <span class="n">hillshade</span> <span class="o">=</span> <span class="n">ee</span><span class="o">.</span><span class="n">Terrain</span><span class="o">.</span><span class="n">hillshade</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">azimuth</span><span class="o">=</span><span class="mi">285</span><span class="p">,</span><span class="n">elevation</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
 <span class="n">hsVis</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span><span class="mi">25</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="s1">&#39;palette&#39;</span><span class="p">:</span><span class="s1">&#39;000000,ffffff&#39;</span><span class="p">}</span>
 
+<span class="c1">#create new visualization parameters for the elevation data</span>
+<span class="n">elvVis</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">:</span><span class="mi">3000</span><span class="p">,</span><span class="s1">&#39;palette&#39;</span><span class="p">:</span><span class="s1">&#39;#333399,#00a2e5,#55dd77,#ffff99,#aa926b,#aa928d,#ffffff&#39;</span><span class="p">,</span><span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">}</span>
+
 <span class="c1"># specify new region over Colorado</span>
 <span class="c1"># showing the Great Continental Divide that splits the state</span>
 <span class="n">newRegion</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">111</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">43</span><span class="p">]</span>
 
 <span class="c1"># set up a blank map</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 
 <span class="c1"># plot our hillshade on the blank map</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hillshade</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">newRegion</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">hsVis</span><span class="p">,</span>
-              <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span> <span class="c1"># *note: we are passing our map in as a keyword and will get that map with the image overlayed</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">hillshade</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># *note: we are passing our map into addLayer as a keyword and will get that map with the image overlayed</span>
+                  <span class="n">region</span><span class="o">=</span><span class="n">newRegion</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">hsVis</span><span class="p">,</span><span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span><span class="mi">1000</span><span class="p">])</span>
 
 <span class="c1"># plot SRTM data over the hillshade with some adjusted visualization parameters</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">newRegion</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;min&#39;</span><span class="p">:</span><span class="mi">1750</span><span class="p">,</span><span class="s1">&#39;max&#39;</span><span class="p">:</span><span class="mi">3000</span><span class="p">,</span><span class="s1">&#39;palette&#39;</span><span class="p">:</span><span class="s1">&#39;000000,ffffff&#39;</span><span class="p">,</span><span class="s1">&#39;opacity&#39;</span><span class="p">:</span><span class="mf">0.3</span><span class="p">},</span>
-              <span class="n">axes</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span> <span class="c1"># *note: we are passing the map again as a keyword to stack images on each other</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">srtm</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="c1"># *note: we are passing the map again as a keyword to stack images on each other</span>
+              <span class="n">region</span><span class="o">=</span><span class="n">newRegion</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">elvVis</span><span class="p">,</span><span class="n">dims</span><span class="o">=</span><span class="p">[</span><span class="mi">2000</span><span class="p">,</span><span class="mi">1000</span><span class="p">])</span>
 
 <span class="c1"># add some styling to make our map publication ready</span>
 <span class="n">xticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">111</span><span class="p">,</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">yticks</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">35</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">xticks</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yticks</span><span class="p">,</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="n">xticks</span><span class="p">,</span> <span class="n">ylocs</span><span class="o">=</span><span class="n">yticks</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;midnightblue&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">xlocs</span><span class="o">=</span><span class="n">xticks</span><span class="p">,</span> <span class="n">ylocs</span><span class="o">=</span><span class="n">yticks</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="c1"># set custom formatting for the tick labels</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LONGITUDE_FORMATTER</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">LATITUDE_FORMATTER</span><span class="p">)</span>
@@ -545,15 +549,6 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 <div class="output_area docutils container">
 <img alt="../_images/examples_cartoee_simple_10_0.png" src="../_images/examples_cartoee_simple_10_0.png" />
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
 </div>
 </div>
 </div>

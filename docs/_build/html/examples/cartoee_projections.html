@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Multiple maps using subplots" href="cartoee_multimaps.html" />
     <link rel="prev" title="A simple plotting example" href="cartoee_simple.html" /> 
 
   
@@ -87,7 +88,6 @@
               <p class="caption"><span class="caption-text">Introduction:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../introduction.html#installation">Installation</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Examples:</span></p>
 <ul class="current">
@@ -97,6 +97,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#Mapping-with-new-projections">Mapping with new projections</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="cartoee_multimaps.html">Multiple maps using subplots</a></li>
 </ul>
 
             
@@ -446,7 +447,7 @@ Populating the interactive namespace from numpy and matplotlib
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
 <span></span><span class="c1"># plot the result with cartoee using a PlateCarre projection (default)</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -473,8 +474,8 @@ Populating the interactive namespace from numpy and matplotlib
 <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Mollweide</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">180</span><span class="p">)</span>
 
 <span class="c1"># plot the result with cartoee using the Mollweide projection</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
-              <span class="n">proj</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+                <span class="n">proj</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -497,8 +498,8 @@ Populating the interactive namespace from numpy and matplotlib
 <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">InterruptedGoodeHomolosine</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">180</span><span class="p">)</span>
 
 <span class="c1"># plot the result with cartoee using the Goode homolosine projection</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
-              <span class="n">proj</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+                <span class="n">proj</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -521,8 +522,8 @@ Populating the interactive namespace from numpy and matplotlib
 <span class="n">projection</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="o">-</span><span class="mi">130</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># plot the result with cartoee using the orographic projection</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
-              <span class="n">proj</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">bbox</span><span class="p">,</span>
+                <span class="n">proj</span><span class="o">=</span><span class="n">projection</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -545,7 +546,7 @@ Populating the interactive namespace from numpy and matplotlib
 <span class="n">natlantic</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">70</span><span class="p">]</span>
 
 <span class="c1"># plot the result with cartoee focusing on the north Atlantic</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">natlantic</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">cee</span><span class="o">.</span><span class="n">getMap</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span><span class="n">visParams</span><span class="o">=</span><span class="n">visualization</span><span class="p">,</span><span class="n">region</span><span class="o">=</span><span class="n">natlantic</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;The Gulf Stream&#39;</span><span class="p">)</span>
@@ -560,15 +561,6 @@ Populating the interactive namespace from numpy and matplotlib
 <img alt="../_images/examples_cartoee_projections_11_0.png" src="../_images/examples_cartoee_projections_11_0.png" />
 </div>
 </div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 
@@ -579,6 +571,8 @@ Populating the interactive namespace from numpy and matplotlib
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="cartoee_multimaps.html" class="btn btn-neutral float-right" title="Multiple maps using subplots" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="cartoee_simple.html" class="btn btn-neutral" title="A simple plotting example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
