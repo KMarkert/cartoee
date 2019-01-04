@@ -7,20 +7,40 @@ except ImportError:
     from urllib.request import urlopen
 
 import cartopy.crs as ccrs
-from cartopy.mpl.geoaxes import GeoAxesSubplot
+from cartopy.mpl.geoaxes import GeoAxes,GeoAxesSubplot
 import matplotlib.pyplot as plt
 
-def plot(imgObj,proj=ccrs.PlateCarree(),dims=None,region=None,visParams=None,axes=None):
+def getMap(imgObj,proj=ccrs.PlateCarree(),dims=None,region=None,visParams=None):
     """
-    Create a cartopy plot with a geographic projection from an Earth Engine image object.
+    Wrapper function to create a new cartopy plot with project and add Earth Engine
+    image results to
 
     Args:
-        imgObj (ee.image.Image): Earth Engine image result to plot
+        eeObj (ee.image.Image): Earth Engine image result to plot
         proj (cartopy.crs, optional): Cartopy projection that determines the projection of the resulting plot. By default uses an equirectangular projection, PlateCarree.
         dims (list or tuple or int, optional): dimensions to request earth engine result as [WIDTH,HEIGHT]. If only one number is passed, it is used as the maximum, and the other dimension is computed by proportional scaling. Default None and infers dimesions
         region (list or tuple, optional): geospatial region of the image to render in format [E,S,W,N]. By default, the whole image.
         visParams (dict, optional): visualization parameters as a dictionary. See https://developers.google.com/earth-engine/image_visualization for options.
-        axes (cartopy.mpl.geoaxes.GeoAxesSubplot, optional): cartopy GeoAxesSubplot object. Default None and creates new one
+
+    Returns:
+        axes (cartopy.mpl.geoaxes.GeoAxesSubplot): cartopy GeoAxesSubplot object with Earth Engine results displayed
+    """
+
+    ax = plt.axes(projection=proj)
+    ax = addLayer(imgObj,ax=ax,dims=dims,region=region,visParams=visParams)
+
+    return ax
+
+def addLayer(imgObj,ax=None,dims=None,region=None,visParams=None):
+    """
+    Add an Earth Engine image to a cartopy plot.
+
+    Args:
+        eeObj (ee.image.Image): Earth Engine image result to plot
+        ax (cartopy.mpl.geoaxes.GeoAxesSubplot or cartopy.mpl.geoaxes.GeoAxes, optional): cartopy GeoAxesSubplot object. Default None and creates new one
+        dims (list or tuple or int, optional): dimensions to request earth engine result as [WIDTH,HEIGHT]. If only one number is passed, it is used as the maximum, and the other dimension is computed by proportional scaling. Default None and infers dimesions
+        region (list or tuple, optional): geospatial region of the image to render in format [E,S,W,N]. By default, the whole image.
+        visParams (dict, optional): visualization parameters as a dictionary. See https://developers.google.com/earth-engine/image_visualization for options.
 
     Returns:
         axes (cartopy.mpl.geoaxes.GeoAxesSubplot): cartopy GeoAxesSubplot object with Earth Engine results displayed
@@ -45,11 +65,8 @@ def plot(imgObj,proj=ccrs.PlateCarree(),dims=None,region=None,visParams=None,axe
     if type(dims) == None and type(dims) not in [list,tuple,int]:
         raise ValueError('provided dims not of type list, tuple, or int')
 
-    if type(axes) != GeoAxesSubplot:
-        if axes == None:
-            axes = plt.axes(projection=proj)
-        else:
-            raise ValueError('provided axes not of type cartopy.mpl.geoaxes.GeoAxesSubplot')
+    if type(ax) not in [GeoAxes,GeoAxesSubplot]:
+        raise ValueError('provided axes not of type cartopy.mpl.geoaxes.GeoAxesSubplot')
 
     args = {'format':'png'}
     if region:
@@ -68,9 +85,12 @@ def plot(imgObj,proj=ccrs.PlateCarree(),dims=None,region=None,visParams=None,axe
 
     a = plt.imread(img)
 
-    axes.imshow(a, extent=viewExtent,origin='upper',transform=ccrs.PlateCarree())
+    ax.imshow(a, extent=viewExtent,origin='upper',transform=ccrs.PlateCarree())
 
-    return axes
+    return ax
+
+def addColorbar(ax,visParams):
+    raise NotImplementedError('function to add colorbar is not yet implemented')
 
 if __name__ == "__main__":
     srtm = ee.Image("CGIAR/SRTM90_V4")
