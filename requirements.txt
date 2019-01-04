@@ -1,2 +1,4 @@
 # List required packages in this file, one per line.
+sphinx>=1.4
+ipykernel
 nbsphinx
