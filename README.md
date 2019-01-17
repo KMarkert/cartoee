@@ -1,4 +1,6 @@
 # cartoee
+[![PyPI version](https://badge.fury.io/py/cartoee.svg)](https://badge.fury.io/py/cartoee) [![DOI](https://zenodo.org/badge/163705692.svg)](https://zenodo.org/badge/latestdoi/163705692)
+
 Publication quality maps using [Earth Engine](https://earthengine.google.com/) and [Cartopy](https://scitools.org.uk/cartopy/docs/latest/)!
 ![alt-text](./docs/_static/intro_fig.png)
 
@@ -16,6 +18,8 @@ git clone https://github.com/kmarkert/cartoee.git
 cd cartoee
 python setup.py install
 ```
+
+Please see the [documentation](https://cartoee.readthedocs.io/en/latest/introduction.html#dependencies) for instructions on installing dependencies.
 
 
 ### Working with cartoee
