@@ -31,6 +31,7 @@ and visualization.
 
    examples/cartoee_simple.ipynb
    examples/cartoee_projections.ipynb
+   examples/cartoee_colorbars.ipynb
    examples/cartoee_multimaps.ipynb
 
 
@@ -39,3 +40,6 @@ and visualization.
   :caption: API Reference:
 
   api.rst
+
+Contact:
+ Cartoee is on GitHub at https://github.com/kmarkert/cartoee. Please report issues there.
