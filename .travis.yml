@@ -1,0 +1,21 @@
+language: python
+env:
+  global:
+  # Set defaults to avoid repeating in most cases
+  - PYTHON_VERSION=$TRAVIS_PYTHON_VERSION
+  - NUMPY_VERSION=stable
+  - MAIN_CMD='python setup.py'
+  # 'krb5' is added as a workaround for an issue with gdal
+  # see: https://github.com/conda-forge/gdal-feedstock/issues/205
+  - CONDA_DEPENDENCIES='Cython sphinx cartopy matplotlib sphinx_rtd_theme ipython'
+  - PIP_DEPENDENCIES='sphinxcontrib-napoleon nbsphinx earthengine-api google-api-python-client oauth2client'
+  - SETUP_XVFB=False
+  - EVENT_TYPE='push pull_request'
+  - SETUP_CMD='test'
+  - CONDA_CHANNELS='conda-forge'
+matrix:
+  include:
+  - env: PYTHON_VERSION=3.6
+    os: linux
+  - env: PYTHON_VERSION=3.6
+    os: osx
