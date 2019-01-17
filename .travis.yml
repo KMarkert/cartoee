@@ -8,7 +8,7 @@ env:
   # 'krb5' is added as a workaround for an issue with gdal
   # see: https://github.com/conda-forge/gdal-feedstock/issues/205
   - CONDA_DEPENDENCIES='Cython sphinx cartopy matplotlib sphinx_rtd_theme ipython'
-  - PIP_DEPENDENCIES='sphinxcontrib-napoleon nbsphinx earthengine-api google-api-python-client oauth2client'
+  - PIP_DEPENDENCIES='sphinxcontrib-napoleon nbsphinx earthengine-api google-api-python-client oauth2client coverage flake8'
   - SETUP_XVFB=False
   - EVENT_TYPE='push pull_request'
   - SETUP_CMD='test'
