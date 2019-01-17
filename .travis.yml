@@ -19,3 +19,12 @@ matrix:
     os: linux
   - env: PYTHON_VERSION=3.6
     os: osx
+  - env: PYTHON_VERSION=2.7
+    os: linux
+install:
+- git clone --depth 1 git://github.com/astropy/ci-helpers.git
+- source ci-helpers/travis/setup_conda.sh
+- pip install .
+script:
+  - coverage report -m  # Generate test coverage report.
+  - flake8 --max-line-length=115 cartoee # Enforce code style (but relax line length limit a bit).
