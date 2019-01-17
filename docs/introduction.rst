@@ -3,7 +3,7 @@ Overview
 
 .. toctree::
    :hidden:
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
 
