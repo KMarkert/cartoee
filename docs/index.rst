@@ -6,9 +6,16 @@
 cartoee
 ===================================
 
-:code:`cartoee` is a simple Python package used for making publication quality maps from `Earth Engine <https://earthengine.google.com/>`_ results using `Cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_ without having to download results.
+:code:`cartoee` is a simple Python package used for making publication quality
+maps from `Earth Engine <https://earthengine.google.com/>`_ results using
+`Cartopy <https://scitools.org.uk/cartopy/docs/latest/>`_ without having to
+export results from Earth Engine.
 
-This packages aims to do only one thing well: getting processing results from Earth Engine into a publication quality mapping interface. :code:`cartoee` simply gets results from Earth Engine and plots it with the correct geographic projections leaving :code:`ee` and :code:`cartopy` to do more of the processing and visualization.
+This packages aims to do only one thing well: getting processing results from
+Earth Engine into a publication quality mapping interface. :code:`cartoee`
+simply gets results from Earth Engine and plots it with the correct geographic
+projections leaving :code:`ee` and :code:`cartopy` to do more of the processing
+and visualization.
 
 
 .. toctree::
@@ -31,4 +38,4 @@ This packages aims to do only one thing well: getting processing results from Ea
   :maxdepth: 2
   :caption: API Reference:
 
-  ToDo
+  api.rst
