@@ -167,9 +167,9 @@ def addColorbar(ax,loc=None,visParams=None,discrete=False,**kwargs):
             raise ValueError('provided loc not of type str. options are "left", '
                              '"top", "right", or "bottom"')
 
-    elif cax:
-        if type(cax) not in [Axes]:
-            raise ValueError('provided cax not of type matplotlib.axes._axes.Axes')
+    elif 'cax' in kwargs:
+        cax = kwargs['cax']
+        kwargs = {key:kwargs[key] for key in kwargs.keys() if key != 'cax'}
 
     else:
         raise ValueError('loc or cax keywords must be specified')
