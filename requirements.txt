@@ -1,5 +1,6 @@
 # List required packages in this file, one per line.
 # for the package
+setuptools
 Cython
 oauth2client
 google-api-python-client
