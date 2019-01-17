@@ -131,7 +131,7 @@ def addColorbar(ax,loc=None,visParams=None,discrete=False,**kwargs):
         **kwargs: remaining keyword arguments are passed to colorbar()
 
     Returns:
-        ax (cartopy.mpl.geoaxes.GeoAxesSubplot): cartopy GeoAxesSubplot object with colorbar
+        cb (matplotlib.colorbar.ColorbarBase): matplotlib colorbar object
 
     Raises:
         Warning: If 'discrete' is true when "palette" key is not in visParams
