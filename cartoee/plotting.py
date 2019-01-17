@@ -209,7 +209,6 @@ def addColorbar(ax,loc=None,visParams=None,discrete=False,**kwargs):
                 norm = mpl.colors.BoundaryNorm(vals, cmap.N)
 
             else:
-                print(hexcodes)
                 cmap = mpl.colors.LinearSegmentedColormap.from_list('custom', hexcodes, N=256)
                 norm = mpl.colors.Normalize(vmin=vmin, vmax=vmax)
 
