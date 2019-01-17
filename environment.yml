@@ -3,7 +3,6 @@ channels:
   - defaults
 dependencies:
   - matplotlib
-  - matplotlib-base
   - cartopy=0.16.0
   - pip:
     - earthengine-api==0.1.145
