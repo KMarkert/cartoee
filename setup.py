@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='cartoee',
-      version='0.0.2',
+      version='0.0.3',
       description='Publication quality maps using Earth Engine and Cartopy!',
       long_description=long_description,
       long_description_content_type="text/markdown",
