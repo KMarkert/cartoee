@@ -3,6 +3,7 @@
 oauth2client
 google-api-python-client
 earthengine-api
+Cython>=0.15
 cartopy
 
 # for readthedocs
