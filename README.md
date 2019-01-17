@@ -14,7 +14,7 @@ Or, you can install the package manually from source code using the following co
 ```
 git clone https://github.com/kmarkert/cartoee.git
 cd cartoee
-pip install -e .
+python setup.py install
 ```
 
 
@@ -77,14 +77,14 @@ modis = ee.ImageCollection('MODIS/006/MCD43A4')\
         .filterDate('2010-01-01','2016-01-01')\
         .map(calc_ndvi)
 
-# define color ramp for visualization
-cb = 'd73027,fc8d59,fee08b,ffffbf,d9ef8b,91cf60,1a9850'
-
 # get the cartopy map with EE results
-ax = cee.plot(modis.mean(),
-    visParams={'min':-0.5,'max':0.85,'bands':'ndvi','palette':cb},
+ax = cee.getMap(modis.mean(),cmap='YlGn'
+    visParams={'min':-0.5,'max':0.85,'bands':'ndvi',},
     region=[-180,-90,180,90])
+
 ax.coastlines()
+
+cb = cee.addColorbar(ax,loc='right',cmap='YlGn',visParams={'min':0,'max':1,'bands':'ndvi'})
 ```
 ![alt-text](./docs/_static/global_ndvi.png)
 
@@ -109,12 +109,18 @@ imgs = np.array([[djf,mam],[jja,son]])
 titles = np.array([['DJF','MAM'],['JJA','SON']])
 
 for i in range(len(imgs)):
-  for j in range(len(imgs[i])):
-      ax[i,j] = cee.addLayer(imgs[i,j],region=[-180,-90,180,90],
-                         visParams={'min':-0.5 ,'max':0.85,'bands':'ndvi','palette':cb},
-                         dims=500,axes=ax[i,j])
-      ax[i,j].coastlines()
-      ax[i,j].gridlines(linestyle='--')
-      ax[i,j].set_title(titles[i,j])
+    for j in range(len(imgs[i])):
+        ax[i,j] = cee.addLayer(imgs[i,j],ax=ax[i,j],
+                               region=bbox,dims=500,
+                               visParams=ndviVis,cmap='YlGn'
+                              )
+        ax[i,j].coastlines()
+        ax[i,j].gridlines(linestyle='--')
+        ax[i,j].set_title(titles[i,j])
+
+cax = fig.add_axes([0.9, 0.2, 0.02, 0.6])
+cb = cee.addColorbar(ax[i,j],cax=cax,cmap='YlGn',visParams=ndviVis)
 ```
 ![alt-text](./docs/_static/seasonal_ndvi.png)
+
+To see more examples, go to the documentation at https://cartoee.readthedocs.io!
