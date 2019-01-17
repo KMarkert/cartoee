@@ -1,9 +1,9 @@
 # List required packages in this file, one per line.
 # for the package
+Cython
 oauth2client
 google-api-python-client
 earthengine-api
-Cython>=0.15
 cartopy
 
 # for readthedocs
