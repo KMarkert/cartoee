@@ -2,8 +2,8 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - matplotlib=3.0.2
-  - matplotlib-base=3.0.2
+  - matplotlib
+  - matplotlib-base
   - cartopy=0.16.0
   - pip:
     - earthengine-api==0.1.145
