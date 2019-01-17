@@ -32,7 +32,7 @@ Installation
 -------------
 
 :code:`cartoee` is available to install via :code:`pip`. To install the package,
- you can use pip  install for your Python environment:
+you can use pip  install for your Python environment:
 
 .. code-block:: bash
 
