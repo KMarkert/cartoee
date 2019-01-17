@@ -38,4 +38,4 @@ and visualization.
   :maxdepth: 2
   :caption: API Reference:
 
-  api.rst
+  source/cartoee.rst
