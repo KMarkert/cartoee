@@ -1,5 +1,32 @@
+import subprocess
 import setuptools
 from setuptools import setup
+from setuptools.command.install import install
+
+class eeAuthCommand(install):
+    """Customized setuptools install command - prints a friendly greeting."""
+    def run(self):
+        print "Authorizing the Earth Engine API on your environment..."
+
+        import ee
+        from ee.ee_exception import EEException
+
+        # try to initialize Earth Engine session
+        try:
+          ee.Initialize()
+
+        # if it doesn't work, then authorize an account for Earth Engine to connect to...
+        except EEException:
+          !earthengine authenticate --quiet
+
+          authCode = input("Authorization code:")
+
+          subprocess("earthengine authenticate --authorization-code=$authCode")
+
+          # ...then initialize session
+          ee.Initialize()
+
+        install.run(self)
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -26,4 +53,7 @@ setup(name='cartoee',
           'google-api-python-client',
           'earthengine-api',
       ],
+      cmdclass={
+        'install': eeAuthCommand,
+        },
 )
