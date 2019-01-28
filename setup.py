@@ -19,6 +19,7 @@ setup(name='cartoee',
       install_requires=[
           'matplotlib',
           'Cython',
+          'geos',
           'pyproj',
           'cartopy==0.16.0',
           'oauth2client',
