@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import subprocess
 import setuptools
 from setuptools import setup
@@ -6,7 +8,7 @@ from setuptools.command.install import install
 class eeAuthCommand(install):
     """Customized setuptools install command - prints a friendly greeting."""
     def run(self):
-        print "Authorizing the Earth Engine API on your environment..."
+        print("Authorizing the Earth Engine API on your environment...")
 
         import ee
         from ee.ee_exception import EEException
@@ -25,6 +27,7 @@ class eeAuthCommand(install):
 
           # ...then initialize session
           ee.Initialize()
+          print("Authorization successful!")
 
         install.run(self)
 
