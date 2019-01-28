@@ -8,6 +8,9 @@ from setuptools.command.install import install
 class eeAuthCommand(install):
     """Customized setuptools install command - prints a friendly greeting."""
     def run(self):
+        print("Installing dependencies...")
+        subprocess("pip install Cython pyproj cartopy oauth2client google-api-python-client earthengine-api")
+
         print("Authorizing the Earth Engine API on your environment...")
 
         import ee
@@ -19,7 +22,7 @@ class eeAuthCommand(install):
 
         # if it doesn't work, then authorize an account for Earth Engine to connect to...
         except EEException:
-          !earthengine authenticate --quiet
+          subprocess("earthengine authenticate --quiet")
 
           authCode = input("Authorization code:")
 
