@@ -19,7 +19,7 @@ setup(name='cartoee',
       install_requires=[
           'matplotlib',
           'Cython',
-          'pyproj'
+          'pyproj',
           'cartopy',
           'oauth2client',
           'google-api-python-client',
