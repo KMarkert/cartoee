@@ -22,11 +22,12 @@ def main():
 
         # if it doesn't work, then authorize an account for Earth Engine to connect to...
         except EEException:
-            subprocess.call('earthengine authenticate --quiet')
+            subprocess.call('earthengine authenticate --quiet',shell=True)
 
             authCode = input("Authorization code:")
 
-            subprocess.call('earthengine authenticate --authorization-code={}'.format(authCode))
+            subprocess.call('earthengine authenticate --authorization-code={}'.format(authCode),
+                            shell=True)
 
             # ...then initialize session
             ee.Initialize()
