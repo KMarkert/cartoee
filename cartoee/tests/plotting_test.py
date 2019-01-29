@@ -40,7 +40,8 @@ def projectionTest(img,box,vis):
     ax = cee.addLayer(img,ax=ax,region=box,visParams=vis,
                     cmap='gist_earth')
 
-    cb = cee.addColorbar(ax,loc='bottom',cmap='gist_earth',visParams=vis)
+    cb = cee.addColorbar(ax,loc='bottom',cmap='gist_earth',visParams=vis,
+                         orientation='horizontal')
 
     plt.show()
     plt.close()
