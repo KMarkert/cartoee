@@ -36,15 +36,15 @@ you can use pip  install for your Python environment:
 
 .. code-block:: bash
 
-  pip install cartoee
+  $ pip install cartoee
 
 Or, you can install the package manually from source code using the following commands:
 
 .. code-block:: bash
 
-  git clone https://github.com/kmarkert/cartoee.git
-  cd cartoee
-  python setup.py install
+  $ git clone https://github.com/kmarkert/cartoee.git
+  $ cd cartoee
+  $ python setup.py install
 
 Dependencies
 ~~~~~~~~~~~~~
@@ -62,7 +62,7 @@ instructions:
 Using the :code:`pip install` command will install all of the necessary dependencies
 needed for using cartoee.
 
-.. note::
+.. warning::
 
     - Before installing cartoee, the cartopy requires the `GEOS
       <https://geos.osgeo.org/doxygen/>`_ and `Proj4
@@ -75,8 +75,18 @@ the instructions:
 
 .. code-block:: bash
 
-    earthengine authenticate
+    $ earthengine authenticate
 
+To test that cartoee and all of the dependencies have been installed correctly,
+run the following command:
 
-Another easy way to get dependencies installed correctly is to use conda for
-matplotlib and cartopy prior to installing cartoee.
+.. code-block:: bash
+
+    $ cee_install_test
+
+.. note::
+
+    - If your local machine is not yet authenticated for Earth Engine, the
+      :code:`cee_install_test` will walk you through the authentication process.
+
+If all of the test are successful, you will see no 'failed' when the test is done.
