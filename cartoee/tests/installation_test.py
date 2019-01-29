@@ -7,13 +7,18 @@ def main():
         import matplotlib.pyplot as plt
         print('Successfully imported matplotlib\n')
 
+        pltTest = 'successful'
+
     except ImportError:
         warnings.warn("Could not import matplotlib...\n")
+        pltTest = 'failed'
 
     try:
         import ee
         from ee.ee_exception import EEException
         print('Successfully imported ee\n')
+
+        eeTest = 'successful'
 
         # try to initialize Earth Engine session
         try:
@@ -33,7 +38,7 @@ def main():
             try:
                 # ...then initialize session
                 ee.Initialize()
-                print('Successfully initialized and ee session\n')
+                print('Successfully initialized an ee session\n')
 
             # if it doesn't work, then throw warning...
             except EEException:
@@ -41,20 +46,31 @@ def main():
 
     except ImportError:
         warnings.warn("Could not import ee...\n")
+        eeTest = 'failed'
 
     try:
         import cartopy
         import cartopy.crs as ccrs
         print('Successfully imported cartopy\n')
 
+        cpyTest = 'successful'
+
     except:
         warnings.warn("Could not import cartopy...\n")
+        cpyTest = 'failed'
 
     try:
         import cartoee as cee
         print('Successfully imported cartoee\n')
 
+        ceeTest = 'successful'
+
     except:
         warnings.warn("Could not import cartoee...\n")
+        ceeTest = 'failed'
 
-    print('Installation testing done.')
+    print('Installation testing done.\n '
+          'Matplotlib:  {0} \n '
+          'EarthEngine: {1} \n '
+          'Cartopy:     {2} \n '
+          'Cartoee:     {3} \n '.format(pltTest,eeTest,cpyTest,ceeTest))
