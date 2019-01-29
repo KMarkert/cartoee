@@ -28,7 +28,8 @@ setup(name='cartoee',
       ],
       entry_points={
         'console_scripts': [
-            'cartoee_install_test = cartoee.tests.installation_test:main',
+            'cee_install_test = cartoee.tests.installation_test:main',
+            'cee_plotting_test = cartoee.tests.plotting_test:main'
         ],
       },
 )
