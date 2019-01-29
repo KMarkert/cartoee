@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 ee.Initialize()
 
 def mapTest(img,box,vis):
-    plt.figure()
     ax = cee.getMap(img,region=box,visParams=vis,
                     cmap='gist_earth')
     plt.show()
@@ -17,7 +16,6 @@ def mapTest(img,box,vis):
 
 
 def layerTest(img,box,vis):
-    plt.figure()
     ax = plt.axes(projection=ccrs.PlateCarree())
 
     ax = cee.addLayer(img,ax=ax,region=box,visParams=vis,
@@ -27,7 +25,6 @@ def layerTest(img,box,vis):
 
 
 def colorbarTest(img,box,vis):
-    plt.figure()
     ax = cee.getMap(img,region=box,visParams=vis,
                     cmap='gist_earth')
     cb = cee.addColorbar(ax,loc='right',cmap='gist_earth',visParams=vis)
@@ -37,7 +34,6 @@ def colorbarTest(img,box,vis):
 
 
 def projectionTest(img,box,vis):
-    plt.figure()
     projection = ccrs.Mollweide(central_longitude=-180)
     ax = plt.axes(projection=projection)
 
