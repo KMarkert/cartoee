@@ -26,4 +26,9 @@ setup(name='cartoee',
           'google-api-python-client',
           'earthengine-api',
       ],
+      entry_points={
+        'console_scripts': [
+            'cartoee_install_test = cartoee.tests.installation_test:main',
+        ],
+      },
 )
