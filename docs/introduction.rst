@@ -36,37 +36,57 @@ you can use pip  install for your Python environment:
 
 .. code-block:: bash
 
-  pip install cartoee
+  $ pip install cartoee
 
 Or, you can install the package manually from source code using the following commands:
 
 .. code-block:: bash
 
-  git clone https://github.com/kmarkert/cartoee.git
-  cd cartoee
-  python setup.py install
+  $ git clone https://github.com/kmarkert/cartoee.git
+  $ cd cartoee
+  $ python setup.py install
 
 Dependencies
 ~~~~~~~~~~~~~
 
 :code:`cartoee` is built using pure Python code however relies on a few dependencies
 (`earthengine-api <https://developers.google.com/earth-engine/>`_ and cartopy_)
-that are available. Users are referred to the dependencies documentation for
-full installation instructions:
+that are available. These additional Python packages have their own dependencies
+and users are referred to the dependencies documentation for full installation
+instructions:
 
 * `Matplotlib installation <https://matplotlib.org/users/installing.html>`_
 * `Earth Engine API installation <https://developers.google.com/earth-engine/python_install_manual>`_
 * `Cartopy installation <https://scitools.org.uk/cartopy/docs/latest/installing.html#installing>`_
 
-The easiest way to get dependencies installed correctly is to use conda for
-matplotlib and cartopy. The Earth Engine API requires installation through pip:
+Using the :code:`pip install` command will install all of the necessary dependencies
+needed for using cartoee.
+
+.. warning::
+
+    - Before installing cartoee, the cartopy requires the `GEOS
+      <https://geos.osgeo.org/doxygen/>`_ and `Proj4
+      <https://proj4.org/>`_ libraries installed on your system before
+      being able to properly install.
+
+Additional steps need to be taken to authenticate your local machine to use
+the Earth Engine API. You can do this using the following command and follow
+the instructions:
 
 .. code-block:: bash
 
-  conda install -c conda-forge matplotlib cartopy
-  pip install google-api-python-client
-  pip install earthengine-api
-  # make sure the latest oauth2client library is installed
-  pip install --upgrade oauth2client
-  # autheticate earthengine python api
-  earthengine authenticate
+    $ earthengine authenticate
+
+To test that cartoee and all of the dependencies have been installed correctly,
+run the following command:
+
+.. code-block:: bash
+
+    $ cee_install_test
+
+.. note::
+
+    - If your local machine is not yet authenticated for Earth Engine, the
+      :code:`cee_install_test` will walk you through the authentication process.
+
+If all of the test are successful, you will see no 'failed' when the test is done.

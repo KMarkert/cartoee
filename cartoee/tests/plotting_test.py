@@ -55,37 +55,65 @@ def main():
     print("Testing getMap functionality...")
     try:
         mapTest(srtm,bbox,visualization)
+<<<<<<< HEAD
         print('getMap test successful\n')
         t1 = 'successful'
     except Exception as e:
         warnings.warn("getMap test failed...\n")
+=======
+        print('getMap test successful')
+        t1 = 'successful'
+    except Exception as e:
+        warnings.warn("getMap test failed...")
+>>>>>>> ae0535668877d931fcf427059c1e574dbfda058e
         t1 = 'failed'
 
     print("Testing addLayer functionality...")
     try:
         layerTest(srtm,bbox,visualization)
+<<<<<<< HEAD
         print('addLayer test successful\n')
         t2 = 'successful'
     except Exception as e:
         warnings.warn("addLayer test failed...v")
+=======
+        print('addLayer test successful')
+        t2 = 'successful'
+    except Exception as e:
+        warnings.warn("addLayer test failed...")
+>>>>>>> ae0535668877d931fcf427059c1e574dbfda058e
         t2 = 'failed'
 
     print("Testing colorbar functionality...")
     try:
         colorbarTest(srtm,bbox,visualization)
+<<<<<<< HEAD
         print('colorbar test successful\n')
         t3 = 'successful'
     except Exception as e:
         warnings.warn("colorbar test failed...\n")
+=======
+        print('colorbar test successful')
+        t3 = 'successful'
+    except Exception as e:
+        warnings.warn("colorbar test failed...")
+>>>>>>> ae0535668877d931fcf427059c1e574dbfda058e
         t3 = 'failed'
 
     print("Testing projection functionality...")
     try:
         projectionTest(srtm,bbox,visualization)
+<<<<<<< HEAD
         print('projection test successful\n')
         t4 = 'successful'
     except Exception as e:
         warnings.warn("colorbar test failed...\n")
+=======
+        print('projection test successful')
+        t4 = 'successful'
+    except Exception as e:
+        warnings.warn("colorbar test failed...")
+>>>>>>> ae0535668877d931fcf427059c1e574dbfda058e
         t4 = 'failed'
 
     print('Plotting testing done.\n '
